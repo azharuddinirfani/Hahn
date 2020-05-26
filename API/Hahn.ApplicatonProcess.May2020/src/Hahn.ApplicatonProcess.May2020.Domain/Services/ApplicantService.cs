@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 namespace Hahn.ApplicatonProcess.May2020.Domain.Services
 
 {
-    public class ApplicantRepoService : IApplicantService
+    public class ApplicantService : IApplicantService
     {
         private readonly IRepository<Applicant> applicantRepository;
 
-        public ApplicantRepoService(IRepository<Applicant> applicantRepository)
+        public ApplicantService(IRepository<Applicant> applicantRepository)
         {
             this.applicantRepository = applicantRepository;
         }
 
-        public async Task<(Result, int)> AddAnApplicant(Applicant applicant)
+        public async Task<Applicant> CreateApplicant(Applicant applicant)
         {
             return await applicantRepository.Create(applicant);
         }
@@ -24,12 +24,12 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Services
             return await applicantRepository.GetById(id);
         }
 
-        public async Task<Result> RemoveAnApplicant(int id)
+        public async Task<Result> DeleteApplicant(int id)
         {
             return await applicantRepository.Delete(id);
         }
 
-        public async Task<(Result, int)> UpdateAnApplicant(int id, Applicant applicant)
+        public async Task<(Result, int)> UpdateApplicant(int id, Applicant applicant)
         {
             return await applicantRepository.Update(id, applicant);
         }

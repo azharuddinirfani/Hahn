@@ -16,9 +16,8 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Tests
         {
             sut = new ApplicantRepo(applicationContext);
             var applicant = fixture.Create<Applicant>();
-            (var status, var id) = await sut.Create(applicant);
-            Assert.Equal(Result.Success, status);
-            Assert.NotEqual(default, id);
+            var createdApplicant = await sut.Create(applicant);
+            Assert.NotNull(createdApplicant);
         }
 
         [Fact]
@@ -27,9 +26,8 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Tests
             sut = new ApplicantRepo(applicationContext);
             var applicant = fixture.Create<Applicant>();
             applicant.Id = 0;
-            (var status, var id) = await sut.Create(applicant);
-            Assert.Equal(Result.Success, status);
-            Assert.NotEqual(default, id);
+            var createdApplicant = await sut.Create(applicant);
+            Assert.NotNull(createdApplicant);
         }
 
         [Fact]
@@ -37,12 +35,12 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Tests
         {
             sut = new ApplicantRepo(applicationContext);
             var applicant = fixture.Create<Applicant>();
-            (_, var id) = await sut.Create(applicant);
+            var createdApplicant = await sut.Create(applicant);
             var updatedApplicant = fixture.Create<Applicant>();
-            (var updateStatus, var updatedId) = await sut.Update(id, updatedApplicant);
+            (var updateStatus, var updatedId) = await sut.Update(createdApplicant.Id, updatedApplicant);
             Assert.Equal(Result.Success, updateStatus);
-            var updatedEntity = await sut.GetById(id);
-            Assert.Equal(id, updatedId);
+            var updatedEntity = await sut.GetById(createdApplicant.Id);
+            Assert.Equal(createdApplicant.Id, updatedId);
             Assert.Equal(updatedEntity.Address, updatedApplicant.Address);
             Assert.Equal(updatedEntity.Age, updatedApplicant.Age);
             Assert.Equal(updatedEntity.FamilyName, updatedApplicant.FamilyName);
@@ -67,14 +65,13 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Tests
         {
             sut = new ApplicantRepo(applicationContext);
             var applicant = fixture.Create<Applicant>();
-            (var status, var id) = await sut.Create(applicant);
-            Assert.Equal(Result.Success, status);
-            Assert.NotEqual(default, id);
+            var createdApplicant = await sut.Create(applicant);
+            Assert.NotNull(createdApplicant);
 
             var deleteStatus = await sut.Delete(applicant.Id);
             Assert.Equal(Result.Success, deleteStatus);
 
-            Assert.Null(await sut.GetById(id));
+            Assert.Null(await sut.GetById(createdApplicant.Id));
         }
 
         [Fact]
@@ -82,13 +79,12 @@ namespace Hahn.ApplicatonProcess.May2020.Data.Tests
         {
             sut = new ApplicantRepo(applicationContext);
             var applicant = fixture.Create<Applicant>();
-            (var status, var id) = await sut.Create(applicant);
-            Assert.Equal(Result.Success, status);
-            Assert.NotEqual(default, id);
+            var createdApplicant = await sut.Create(applicant);
+            Assert.NotNull(createdApplicant);
 
-            var aplicantfromDb = await sut.GetById(id);
+            var aplicantfromDb = await sut.GetById(createdApplicant.Id);
             Assert.NotNull(aplicantfromDb);
-            Assert.Equal(id, aplicantfromDb.Id);
+            Assert.Equal(createdApplicant.Id, aplicantfromDb.Id);
         }
 
     }

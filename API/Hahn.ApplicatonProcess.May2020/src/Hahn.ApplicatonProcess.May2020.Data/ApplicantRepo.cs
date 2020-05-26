@@ -13,15 +13,15 @@ namespace Hahn.ApplicatonProcess.May2020.Data
         {
             this.applicantContext = applicantContext;
         }
-        public async Task<(Result, int)> Create(Applicant item)
+        public async Task<Applicant> Create(Applicant item)
         {
             if (await GetById(item.Id) != null)
             {
-                return (Result.Fail, default);
+                return default;
             }
             var applicantEntity = await applicantContext.Applicants.AddAsync(item);
             await applicantContext.SaveChangesAsync();
-            return (Result.Success, applicantEntity.Entity.Id);
+            return applicantEntity.Entity;
         }
 
         public async Task<Result> Delete(int id)

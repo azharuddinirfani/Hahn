@@ -1,0 +1,38 @@
+{
+	"Serilog": {
+		"Using": [ "Serilog.Sinks.Console", "Serilog.Sinks.File"],
+		"MinimumLevel": {
+			"Default": "Debug",
+			"Override": {
+				"Microsoft": "Information",
+				"System": "Information"
+			}
+		},
+		"WriteTo": [
+			{ "Name": "Console" },
+			{
+				"Name": "File",
+				"Args": {
+					"path": "logs\\log.txt",
+					"rollingInterval": "Day",
+					"rollOnFileSizeLimit": true,
+					"retainedFileCountLimit ": 100,
+					"fileSizeLimitBytes": 200000000,
+					"formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
+				}
+			}
+		],
+
+		"Properties": {
+			"Application": "ApplicantApi"
+		}
+	},
+	"Seq": {
+		"ServerUrl": "http://localhost:5341",
+		"ApiKey": "u4phsvX5xEX7quJ2J4th",
+		"MinimumLevel": "Information",
+		"LevelOverride": {
+			"Microsoft": "Warning"
+		}
+	}
+}
