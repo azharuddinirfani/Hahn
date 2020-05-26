@@ -1,0 +1,15 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/API/Hahn.ApplicatonProcess.May2020/.vs/Hahn.ApplicatonProcess.May2020
+/API/Hahn.ApplicatonProcess.May2020/src/Hahn.ApplicatonProcess.May2020.Data/bin/Debug
+/API/Hahn.ApplicatonProcess.May2020/src/Hahn.ApplicatonProcess.May2020.Data/obj
+/API/Hahn.ApplicatonProcess.May2020/src/Hahn.ApplicatonProcess.May2020.Domain/bin/Debug/netstandard2.1
+/API/Hahn.ApplicatonProcess.May2020/src/Hahn.ApplicatonProcess.May2020.Domain/obj
+/API/Hahn.ApplicatonProcess.May2020/src/Hahn.ApplicatonProcess.May2020.Web/bin/Debug/netcoreapp3.1
+/API/Hahn.ApplicatonProcess.May2020/src/Hahn.ApplicatonProcess.May2020.Web/obj
+/API/Hahn.ApplicatonProcess.May2020/tests/Hahn.ApplicatonProcess.May2020.Data.Tests/bin/Debug/netcoreapp3.1
+/API/Hahn.ApplicatonProcess.May2020/tests/Hahn.ApplicatonProcess.May2020.Data.Tests/obj
+/API/Hahn.ApplicatonProcess.May2020/tests/Hahn.ApplicatonProcess.May2020.Web.Tests/bin/Debug/netcoreapp3.1
+/API/Hahn.ApplicatonProcess.May2020/tests/Hahn.ApplicatonProcess.May2020.Web.Tests/obj
