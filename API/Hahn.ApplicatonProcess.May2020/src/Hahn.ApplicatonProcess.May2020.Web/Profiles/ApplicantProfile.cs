@@ -11,6 +11,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Profiles
         {
             CreateMap<Applicant, ApplicantDto>();
             CreateMap<ApplicantForCreationDto, Applicant>();
+            CreateMap<ApplicantForUpdateDto, Applicant>();
         }
     }
 }

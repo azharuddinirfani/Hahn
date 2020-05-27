@@ -6,6 +6,7 @@ using Hahn.ApplicatonProcess.May2020.Domain.Models;
 using Hahn.ApplicatonProcess.May2020.Domain.Persistence;
 using Hahn.ApplicatonProcess.May2020.Domain.Services;
 using Hahn.ApplicatonProcess.May2020.Web.Models;
+using Hahn.ApplicatonProcess.May2020.Web.Validators;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -36,9 +37,10 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddTransient<IValidator<ApplicantForCreationDto>, ApplicantBaseValidator<ApplicantForCreationDto>>();
+            services.AddTransient<IValidator<ApplicantForUpdateDto>, ApplicantBaseValidator<ApplicantForUpdateDto>>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddHttpClient(nameof(Models.CountryValidator), config =>
+            services.AddHttpClient(nameof(Validators.CountryValidator), config =>
             {
                 Uri uri = new Uri(Configuration.GetValue<string>("AppConfig:ValidateCountryUrl"));
                 config.BaseAddress = uri;

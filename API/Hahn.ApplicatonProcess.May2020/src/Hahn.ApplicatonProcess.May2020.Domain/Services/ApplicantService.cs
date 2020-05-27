@@ -1,5 +1,6 @@
 ﻿using Hahn.ApplicatonProcess.May2020.Domain.Models;
 using Hahn.ApplicatonProcess.May2020.Domain.Persistence;
+using System;
 using System.Threading.Tasks;
 
 namespace Hahn.ApplicatonProcess.May2020.Domain.Services
@@ -16,6 +17,11 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Services
 
         public async Task<Applicant> CreateApplicant(Applicant applicant)
         {
+            if (applicant is null)
+            {
+                throw new ArgumentNullException(nameof(applicant));
+            }
+
             return await applicantRepository.Create(applicant);
         }
 
@@ -29,9 +35,17 @@ namespace Hahn.ApplicatonProcess.May2020.Domain.Services
             return await applicantRepository.Delete(id);
         }
 
-        public async Task<(Result, int)> UpdateApplicant(int id, Applicant applicant)
+        public async Task<Result> UpdateApplicant(int id, Applicant applicant)
         {
-            return await applicantRepository.Update(id, applicant);
+
+            if (applicant is null)
+            {
+                throw new ArgumentNullException(nameof(applicant));
+            }
+            (var result, _) = await applicantRepository.Update(id, applicant);
+
+            return result;
+
         }
 
     }

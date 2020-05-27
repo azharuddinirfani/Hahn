@@ -4,16 +4,17 @@ using System.Net.Http;
 using Xunit;
 using MockHttpClient;
 using System.Net;
-using Hahn.ApplicatonProcess.May2020.Domain.Models;
 using System.Collections.Generic;
 using System.Collections;
+using Hahn.ApplicatonProcess.May2020.Web.Validators;
+using Hahn.ApplicatonProcess.May2020.Web.Models;
 
 namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
 {
     public class ApplicantValidatorTests
     {
         private const string DummyURI = "http://blah.com";
-        ApplicantValidator sut;
+        ApplicantBaseValidator<ApplicantBaseDto> sut;
         readonly Mock<IHttpClientFactory> mockFactory = new Mock<IHttpClientFactory>();
 
         readonly MockHttpClient.MockHttpClient mockHttpClinet = new MockHttpClient.MockHttpClient();
@@ -36,11 +37,11 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
 
         [Theory]
         [ClassData(typeof(ApplicantTestData))]
-        public void GivenAValidApplicant_Validation_Succeeds(Applicant applicant, bool isvalid)
+        public void GivenAValidApplicant_Validation_Succeeds(ApplicantBaseDto applicant, bool isvalid)
         {
 
 
-            sut = new ApplicantValidator(mockFactory.Object);
+            sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
             if (isvalid)
             {
@@ -62,9 +63,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
         public void GivenAge_ValidationConfirmsToSpecifiedExpectedResults(int age, bool isValid)
         {
 
-            var sut = new ApplicantValidator(mockFactory.Object);
+            var sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
-            var applicant = new Applicant
+            var applicant = new ApplicantBaseDto
             {
                 Age = age
             };
@@ -88,9 +89,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
         public void GivenEmailAddress_ValidationConfirmsToSpecifiedExpectedResults(string emailAddress, bool isValid)
         {
 
-            var sut = new ApplicantValidator(mockFactory.Object);
+            var sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
-            var applicant = new Applicant
+            var applicant = new ApplicantBaseDto
             {
                 EmailAddress = emailAddress
             };
@@ -115,9 +116,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
         public void GivenFamilyName_ValidationConfirmsToSpecifiedExpectedResults(string familyName, bool isValid)
         {
 
-            var sut = new ApplicantValidator(mockFactory.Object);
+            var sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
-            var applicant = new Applicant
+            var applicant = new ApplicantBaseDto
             {
                 FamilyName = familyName
             };
@@ -140,9 +141,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
         public void GivenName_ValidationConfirmsToSpecifiedExpectedResults(string name, bool isValid)
         {
 
-            var sut = new ApplicantValidator(mockFactory.Object);
+            var sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
-            var applicant = new Applicant
+            var applicant = new ApplicantBaseDto
             {
                 Name = name
             };
@@ -167,9 +168,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
         public void GivenAddress_ValidationConfirmsToSpecifiedExpectedResults(string address, bool isValid)
         {
 
-            var sut = new ApplicantValidator(mockFactory.Object);
+            var sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
-            var applicant = new Applicant
+            var applicant = new ApplicantBaseDto
             {
                 Address = address
             };
@@ -192,9 +193,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
         public void GivenCountryName_ValidationConfirmsToSpecifiedExpectedResults(string countryname, bool isValid)
         {
 
-            var sut = new ApplicantValidator(mockFactory.Object);
+            var sut = new ApplicantBaseValidator<ApplicantBaseDto>(mockFactory.Object);
 
-            var applicant = new Applicant
+            var applicant = new ApplicantBaseDto
             {
                 CountryOfOrigin = countryname
             };
@@ -227,7 +228,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
             public IEnumerator<object[]> GetEnumerator()
             {
                 yield return new object[] {
-                    new Applicant {
+                    new ApplicantBaseDto {
 
                                      EmailAddress = "a@a",
                                     Age = 21,
@@ -237,7 +238,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
                                     Hired = false,
                                     Name = "uuwxyz"
                     }, true };
-                yield return new object[] {  new Applicant {
+                yield return new object[] {  new ApplicantBaseDto {
 
                                      EmailAddress = "a@a",
                                     Age = -1,
@@ -248,7 +249,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
                                     Name = "uuwxyz"
                     }, false };
 
-                yield return new object[] {  new Applicant {
+                yield return new object[] {  new ApplicantBaseDto {
 
                                      EmailAddress = "aa",
                                     Age = -1,
@@ -259,7 +260,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
                                     Name = "uuwxyz"
                     }, false };
 
-                yield return new object[] {  new Applicant {
+                yield return new object[] {  new ApplicantBaseDto {
 
                                      EmailAddress = "a@a",
                                     Age = -1,
@@ -269,7 +270,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
                                     Hired = false,
                                     Name = "uuwxyz"
                     }, false };
-                yield return new object[] {  new Applicant {
+                yield return new object[] {  new ApplicantBaseDto {
 
                                      EmailAddress = "a@a",
                                     Age = -1,
@@ -280,7 +281,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Tests.Validators
                                     Name = "uuwxyz"
                     }, false };
 
-                yield return new object[] {  new Applicant {
+                yield return new object[] {  new ApplicantBaseDto {
 
                                      EmailAddress = "a@a",
                                     Age = -1,
