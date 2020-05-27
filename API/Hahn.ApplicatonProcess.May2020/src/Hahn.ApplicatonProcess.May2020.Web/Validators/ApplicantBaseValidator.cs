@@ -37,9 +37,11 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Validators
         public ApplicantBaseValidator(IHttpClientFactory httpClientFactory)
         {
             RuleFor(x => x.Name)
+                .NotEmpty()
                 .MinimumLength(5);
 
             RuleFor(x => x.FamilyName)
+                .NotEmpty()
                 .MinimumLength(5);
 
 
@@ -47,12 +49,15 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Validators
                 .InclusiveBetween(20, 60);
 
             RuleFor(x => x.Address)
+                .NotEmpty()
                .MinimumLength(10);
 
             RuleFor(x => x.EmailAddress)
+                .NotEmpty()
                 .EmailAddress(EmailValidationMode.AspNetCoreCompatible);
 
             RuleFor(x => x.CountryOfOrigin)
+                .NotEmpty()
                 .SetValidator(new CountryValidator(httpClientFactory));
 
 

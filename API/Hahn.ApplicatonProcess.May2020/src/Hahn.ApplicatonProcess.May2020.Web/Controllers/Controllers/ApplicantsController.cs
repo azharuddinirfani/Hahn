@@ -2,6 +2,7 @@
 using Hahn.ApplicatonProcess.May2020.Domain.Models;
 using Hahn.ApplicatonProcess.May2020.Domain.Services;
 using Hahn.ApplicatonProcess.May2020.Web.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -12,6 +13,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers.Controllers
     [ApiController]
     [Route("api/applicants")]
     [Consumes("application/json")]
+    [Produces("application/json")]
+
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public class ApplicantsController : ControllerBase
     {
         private readonly ILogger<ApplicantsController> logger;
@@ -24,6 +28,14 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers.Controllers
             this.mapper = mapper ?? throw new ArgumentNullException(nameof(mapper));
             this.applicantService = applicantService ?? throw new ArgumentNullException(nameof(applicantService));
         }
+
+        /// <summary>
+        /// Get an applicant by his/her id
+        /// </summary>
+        /// <param name="applicantId">The id of author you want to get</param>
+        /// <returns>an applicant</returns>
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         [HttpGet("{applicantId}", Name = "GetApplicant")]
         public async Task<ActionResult<ApplicantDto>> GetApplicant(int applicantId)
         {
@@ -39,6 +51,8 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers.Controllers
         }
 
         [HttpPost]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+
         public async Task<ActionResult<ApplicantDto>> CreateApplicant([FromBody] ApplicantForCreationDto applicantForCreationDto)
         {
             var applicant = mapper.Map<Applicant>(applicantForCreationDto);
@@ -53,6 +67,8 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers.Controllers
         }
 
         [HttpPut("{applicantId}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> UpdateApplicant(int applicantId,
             ApplicantForUpdateDto applicantForUpdateDto)
         {
@@ -71,13 +87,15 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers.Controllers
         }
 
         [HttpDelete("{applicantId}")]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
         public async Task<ActionResult> DeleteApplicant(int applicantId)
         {
             var existingApplicant = await applicantService.GetApplicant(applicantId);
 
             if (existingApplicant != null)
             {
-               
+
                 await applicantService.DeleteApplicant(applicantId);
 
                 return NoContent();
@@ -87,6 +105,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web.Controllers.Controllers
         }
 
         [HttpOptions]
+        [ProducesResponseType(StatusCodes.Status200OK)]
         public IActionResult GetApplicantOptions()
         {
             Response.Headers.Add("Allow", "OPTIONS,GET,POST,PUT,DELETE");

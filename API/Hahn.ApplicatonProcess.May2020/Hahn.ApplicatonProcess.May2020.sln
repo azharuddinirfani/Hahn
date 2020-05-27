@@ -7,15 +7,20 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicatonProcess.May2
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicatonProcess.May2020.Domain", "src\Hahn.ApplicatonProcess.May2020.Domain\Hahn.ApplicatonProcess.May2020.Domain.csproj", "{2647EFC9-2CC3-4627-AF07-D154E1A97116}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hahn.ApplicatonProcess.May2020.Web.Tests", "tests\Hahn.ApplicatonProcess.May2020.Web.Tests\Hahn.ApplicatonProcess.May2020.Web.Tests.csproj", "{BF9689AF-6C48-4097-8FF9-DF238425BBEC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicatonProcess.May2020.Web.Tests", "tests\Hahn.ApplicatonProcess.May2020.Web.Tests\Hahn.ApplicatonProcess.May2020.Web.Tests.csproj", "{BF9689AF-6C48-4097-8FF9-DF238425BBEC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hahn.ApplicatonProcess.May2020.Data", "src\Hahn.ApplicatonProcess.May2020.Data\Hahn.ApplicatonProcess.May2020.Data.csproj", "{16B2924D-D238-4651-88B7-202DC1757F3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicatonProcess.May2020.Data", "src\Hahn.ApplicatonProcess.May2020.Data\Hahn.ApplicatonProcess.May2020.Data.csproj", "{16B2924D-D238-4651-88B7-202DC1757F3B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Hahn.ApplicatonProcess.May2020.Data.Tests", "tests\Hahn.ApplicatonProcess.May2020.Data.Tests\Hahn.ApplicatonProcess.May2020.Data.Tests.csproj", "{0FE5B731-96F1-46C1-A62A-04DEF97C9ABE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Hahn.ApplicatonProcess.May2020.Data.Tests", "tests\Hahn.ApplicatonProcess.May2020.Data.Tests\Hahn.ApplicatonProcess.May2020.Data.Tests.csproj", "{0FE5B731-96F1-46C1-A62A-04DEF97C9ABE}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{FD6039B1-511D-4972-9119-614D2B18A55D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{7E3E0F22-7FD8-4AB1-8521-EA5E9899DF67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionsFolder", "SolutionsFolder", "{7D10192F-921B-4BEF-8E31-F0165FC8F05C}"
+	ProjectSection(SolutionItems) = preProject
+		readme.md = readme.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

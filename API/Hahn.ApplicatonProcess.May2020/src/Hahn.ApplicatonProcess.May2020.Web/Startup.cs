@@ -14,8 +14,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
+using Swashbuckle.AspNetCore.Filters;
+using Swashbuckle.AspNetCore.Swagger;
 using System;
 using System.Net;
+using System.Reflection;
 
 namespace Hahn.ApplicatonProcess.May2020.Web
 {
@@ -34,6 +37,7 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             services.AddControllers(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
+                
             })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddTransient<IValidator<ApplicantForCreationDto>, ApplicantBaseValidator<ApplicantForCreationDto>>();
@@ -51,7 +55,20 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             services.AddScoped<IApplicantService, ApplicantService>();
             services.AddScoped<IRepository<Applicant>, ApplicantRepo>();
             services.AddDbContext<ApplicantContext>();
+            services.AddSwaggerGen(setUpAction =>
+           {
+               setUpAction.SwaggerDoc("ApplicantApiOpenAPISpecifications", new Microsoft.OpenApi.Models.OpenApiInfo
+               {
+                   Title = "ApplicantApi",
+                   Version = "1"
+               });
+               setUpAction.ExampleFilters();
 
+               var xmlCommentsFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+               setUpAction.IncludeXmlComments(xmlCommentsFile);
+               setUpAction.AddFluentValidationRules();
+           });
+            services.AddSwaggerExamplesFromAssemblies(Assembly.GetEntryAssembly());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -73,15 +90,27 @@ namespace Hahn.ApplicatonProcess.May2020.Web
                 });
             }
 
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(setUpAction =>
+            {
+                setUpAction.SwaggerEndpoint("/swagger/ApplicantApiOpenAPISpecifications/swagger.json", "Applicant API");
+                setUpAction.RoutePrefix = "";
+
+            });
+
             app.UseRouting();
 
             app.UseAuthorization();
+
             app.UseSerilogRequestLogging();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
 
     }
