@@ -164,11 +164,7 @@ module.exports = ({ production } = {}, {extractCss, analyze, tests, hmr, port, h
     ...when(!tests, new DuplicatePackageCheckerPlugin()),
     new AureliaPlugin(),
     new ModuleDependenciesPlugin({
-      'aurelia-testing': ['./compile-spy', './view-spy'],
-      'aurelia-i18n': [ 
-        { name: 'locales/en/translation.json', chunk: 'lang-en' },
-        { name: 'locales/de/translation.json', chunk: 'de' }
- ]
+      'aurelia-testing': ['./compile-spy', './view-spy']
     }),
     new HtmlWebpackPlugin({
       template: 'index.ejs',
