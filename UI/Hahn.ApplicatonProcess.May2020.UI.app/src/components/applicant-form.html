@@ -1,54 +1,53 @@
 <template>
   <form role="form" submit.delegate="createApplicant()">
     <div class="form-group row">
-      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <label for="name" class="col-sm-2 col-form-label" i18n="home.name">Name</label>
       <div class="col-sm-4">
-        <input id="name" type="input" class="form-control" value.bind="applicant.name & validate" placeholder="name">
+        <input id="name" type="input" class="form-control" value.bind="applicant.name & validate">
       </div>
     </div>
     <div class="form-group row">
-      <label for="familyname" class="col-sm-2 col-form-label">Family Name</label>
+      <label for="familyname" class="col-sm-2 col-form-label" i18n="home.familyname">Family Name</label>
       <div class="col-sm-4">
-        <input id="familyname" class="form-control" type="input" value.bind="applicant.familyName & validate"
-          placeholder="familyName">
+        <input id="familyname" class="form-control" type="input" value.bind="applicant.familyName & validate">
 
       </div>
     </div>
     <div class="form-group row">
-      <label for="address" class="col-sm-2 col-form-label">Address</label>
+      <label for="address" class="col-sm-2 col-form-label" i18n="home.address">Address</label>
       <div class="col-sm-4">
-        <input id="address" class="form-control" type="input" value.bind="applicant.address & validate"
-          placeholder="address">
+        <input id="address" class="form-control" type="input" value.bind="applicant.address & validate">
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="countryOfOrigin" class="col-sm-2 col-form-label">CountryOfOrigin</label>
+      <label for="countryOfOrigin" class="col-sm-2 col-form-label" i18n="home.countryoforigin">CountryOfOrigin</label>
       <div class="col-sm-4">
-        <input id="countryOfOrigin" class="form-control" type="input" value.bind="applicant.countryOfOrigin & validate"
-          placeholder="countryOfOrigin">
+        <input id="countryOfOrigin" class="form-control" type="input" value.bind="applicant.countryOfOrigin & validate">
       </div>
     </div>
     <div class="form-group row">
-      <label for="emailAddress" class="col-sm-2 col-form-label">EmailAddress</label>
+      <label for="emailAddress" class="col-sm-2 col-form-label" i18n="home.emailaddress">EmailAddress</label>
       <div class="col-sm-4">
-        <input id="emailAddress" class="form-control" type="input" value.bind="applicant.emailAddress & validate"
-          placeholder="emailAddress">
+        <input id="emailAddress" class="form-control" type="input" value.bind="applicant.emailAddress & validate">
       </div>
     </div>
 
     <div class="form-group row">
-      <label for="age" class="col-sm-2 col-form-label">Age</label>
+      <label for="age" class="col-sm-2 col-form-label" i18n="home.age">Age</label>
       <div class="col-sm-4">
-        <input id="age" type="number" class="form-control" value.bind="applicant.age & validate" placeholder="age">
+        <input id="age" type="number" class="form-control" value.bind="applicant.age & validate">
       </div>
     </div>
 
     <div class="form-check">
-        <input type="checkbox" class="form-check-input" id="hired" checked.bind='applicant.hired'>
-        <label class="form-check-label" for="hired">Hired</label>
+      <input type="checkbox" class="form-check-input" id="hired" checked.bind='applicant.hired'>
+      <label class="form-check-label" for="hired" i18n="home.hired">Hired</label>
     </div>
-    <button type="submit" class="btn btn-primary" disabled.bind="controller.errors.length >0">Send </button>
-    <input type="reset" class="btn btn-primary" disabled.bind="!enableReset" click.delegate="reset()">
+    <button type="submit" class="btn btn-primary" disabled.bind="controller.errors.length >0" i18n="home.send">Send
+    </button>
+    <button type="submit" class="btn btn-primary" disabled.bind="!enableReset" click.delegate="reset()"
+      i18n="home.reset"> reset
+    </button>
   </form>
 </template>

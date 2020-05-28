@@ -11,8 +11,10 @@
     "aurelia-animator-css": "^1.0.4",
     "aurelia-bootstrapper": "^2.3.3",
     "aurelia-fetch-client": "^1.8.2",
+    "aurelia-i18n": "^3.1.0",
     "aurelia-validation": "^2.0.0-rc1",
     "bootstrap": "^4.5.0",
+    "i18next-xhr-backend": "^3.2.2",
     "jquery": "^3.5.1",
     "popper.js": "^1.16.1"
   },

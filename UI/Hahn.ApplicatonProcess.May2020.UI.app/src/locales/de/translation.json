@@ -1,0 +1,17 @@
+{
+  "home": {
+    "name": "Name",
+    "familyname": "Nachname",
+    "address": "Adresse",
+    "countryoforigin": "das Ursprungsland",
+    "emailaddress":"die E-Mail-Adresse",
+    "age":"Alter",
+    "hired":"gemietet",
+    "send":"Senden",
+    "reset":"zurücksetzen",
+    "requiredfield":"${$displayName} ist erforderlich "
+  },
+  "success": {
+    "success": "Erfolg"
+  }
+}

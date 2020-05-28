@@ -1,3 +1,4 @@
+import { I18N } from 'aurelia-i18n';
 import { Router } from 'aurelia-router';
 import { BootstrapFormRenderer } from './form-renderer';
 import { ApplicantForCreationDto } from './../models/applicantForCreationDto';
@@ -8,10 +9,11 @@ import {
   ValidationControllerFactory,
   ValidationRules,
   validateTrigger,
+  validationMessages,
 } from 'aurelia-validation';
 import { ApplicantService } from 'services/applicantService';
 
-@inject(ValidationControllerFactory, ApplicantService,Router)
+@inject(ValidationControllerFactory, ApplicantService,Router,I18N, validationMessages)
 export class ApplicantForm {
   disableSubmit = true;
   enableReset = false;
@@ -19,34 +21,44 @@ export class ApplicantForm {
   validator = null;
   router:Router;
   applicantService;
+  i18N: I18N;
   @observable applicant: ApplicantForCreationDto = <ApplicantForCreationDto>{};
-  constructor(controllerFactory, applicantService,router) {
+  constructor(controllerFactory, applicantService,router,i18N) {
     this.controller = controllerFactory.createForCurrentScope();
     this.controller.addRenderer(new BootstrapFormRenderer())
     this.controller.validateTrigger = validateTrigger.change;
     this.applicantService = applicantService;
     this.router = router;
+    this.i18N = i18N;
   }
 
 
   public bind() {
     if (this.applicant) {
+      validationMessages['required'] =this.i18N.tr('home.requiredfield');
       ValidationRules
+      
         .ensure('name')
+        .displayName(this.i18N.tr('home.name'))
         .required()
         .minLength(5)
         .ensure('familyName')
+        .displayName(this.i18N.tr('home.familyname'))
         .required()
         .minLength(5)
         .ensure('address')
+        .displayName(this.i18N.tr('home.address'))
         .required()
         .minLength(10)
         .ensure('countryOfOrigin')
+        .displayName(this.i18N.tr('home.countryoforigin'))
         .required()
         .ensure('emailAddress')
+        .displayName(this.i18N.tr('home.emailaddress'))
         .required()
         .email()
         .ensure('age')
+        .displayName(this.i18N.tr('home.age'))
         .required()
         .min(20)
         .max(60)
