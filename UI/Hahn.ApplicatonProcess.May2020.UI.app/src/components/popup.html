@@ -1,0 +1,13 @@
+<template>
+  <ux-dialog>
+    <ux-dialog-body>
+      ${message}
+    </ux-dialog-body>
+
+    <ux-dialog-footer>
+      <button click.trigger="controller.cancel()" i18n="popup.cancel">Cancel</button>
+      <button click.trigger="controller.ok(person)"  i18n="popup.ok">Ok</button>
+    </ux-dialog-footer>
+  </ux-dialog>
+</template>
+

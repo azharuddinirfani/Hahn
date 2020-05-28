@@ -36,7 +36,7 @@
     <div class="form-group row">
       <label for="age" class="col-sm-2 col-form-label" i18n="home.age">Age</label>
       <div class="col-sm-4">
-        <input id="age" type="number" class="form-control" value.bind="applicant.age & validate">
+        <input id="age" type="number" class="form-control" min="1" value.bind="applicant.age & validate">
       </div>
     </div>
 
@@ -46,7 +46,7 @@
     </div>
     <button type="submit" class="btn btn-primary" disabled.bind="controller.errors.length >0" i18n="home.send">Send
     </button>
-    <button type="submit" class="btn btn-primary" disabled.bind="!enableReset" click.delegate="reset()"
+    <button type="submit" class="btn btn-primary" disabled.bind="!isDirty" click.delegate="reset()"
       i18n="home.reset"> reset
     </button>
   </form>

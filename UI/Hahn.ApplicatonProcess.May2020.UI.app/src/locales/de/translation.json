@@ -9,9 +9,14 @@
     "hired":"gemietet",
     "send":"Senden",
     "reset":"zurücksetzen",
-    "requiredfield":"${$displayName} ist erforderlich "
+    "requiredfield":"${$displayName} ist erforderlich ",
+    "resetmessage" :"Formular leeren"
   },
   "success": {
     "success": "Erfolg"
+  },
+  "popup" :{
+    "cancel":"stornieren",
+    "ok":"fortsetzen"
   }
 }

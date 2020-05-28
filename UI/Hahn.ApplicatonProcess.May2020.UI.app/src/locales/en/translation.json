@@ -4,14 +4,19 @@
     "familyname": "FamilyName",
     "address": "Address",
     "countryoforigin": "Country Of Origin",
-    "emailaddress":"Email Address",
-    "age":"Age",
-    "hired":"Hired",
-    "send":"Send",
-    "reset":"Reset",
-    "requiredfield":"${$displayName} is required "
+    "emailaddress": "Email Address",
+    "age": "Age",
+    "hired": "Hired",
+    "send": "Send",
+    "reset": "Reset",
+    "requiredfield": "${$displayName} is required ",
+    "resetmessage": "Reset Form"
   },
   "success": {
     "success": "Success"
+  },
+  "popup": {
+    "cancel": "cancel",
+    "ok": "ok"
   }
 }
