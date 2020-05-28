@@ -34,10 +34,20 @@ namespace Hahn.ApplicatonProcess.May2020.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+               {
+                   options.AddPolicy("DefaultPolicy",
+                       builder =>
+                       {
+                           builder.WithOrigins("*")
+                                               .AllowAnyHeader()
+                                               .AllowAnyMethod();
+                       });
+               });
             services.AddControllers(setupAction =>
             {
                 setupAction.ReturnHttpNotAcceptable = true;
-                
+
             })
                 .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<Startup>());
             services.AddTransient<IValidator<ApplicantForCreationDto>, ApplicantBaseValidator<ApplicantForCreationDto>>();
@@ -101,6 +111,9 @@ namespace Hahn.ApplicatonProcess.May2020.Web
             });
 
             app.UseRouting();
+
+            app.UseCors("DefaultPolicy");
+
 
             app.UseAuthorization();
 

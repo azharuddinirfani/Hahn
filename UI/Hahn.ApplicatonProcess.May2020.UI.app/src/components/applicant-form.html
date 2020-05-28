@@ -1,0 +1,54 @@
+<template>
+  <form role="form" submit.delegate="createApplicant()">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Name</label>
+      <div class="col-sm-4">
+        <input id="name" type="input" class="form-control" value.bind="applicant.name & validate" placeholder="name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="familyname" class="col-sm-2 col-form-label">Family Name</label>
+      <div class="col-sm-4">
+        <input id="familyname" class="form-control" type="input" value.bind="applicant.familyName & validate"
+          placeholder="familyName">
+
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="address" class="col-sm-2 col-form-label">Address</label>
+      <div class="col-sm-4">
+        <input id="address" class="form-control" type="input" value.bind="applicant.address & validate"
+          placeholder="address">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="countryOfOrigin" class="col-sm-2 col-form-label">CountryOfOrigin</label>
+      <div class="col-sm-4">
+        <input id="countryOfOrigin" class="form-control" type="input" value.bind="applicant.countryOfOrigin & validate"
+          placeholder="countryOfOrigin">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="emailAddress" class="col-sm-2 col-form-label">EmailAddress</label>
+      <div class="col-sm-4">
+        <input id="emailAddress" class="form-control" type="input" value.bind="applicant.emailAddress & validate"
+          placeholder="emailAddress">
+      </div>
+    </div>
+
+    <div class="form-group row">
+      <label for="age" class="col-sm-2 col-form-label">Age</label>
+      <div class="col-sm-4">
+        <input id="age" type="number" class="form-control" value.bind="applicant.age & validate" placeholder="age">
+      </div>
+    </div>
+
+    <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="hired" checked.bind='applicant.hired'>
+        <label class="form-check-label" for="hired">Hired</label>
+    </div>
+    <button type="submit" class="btn btn-primary" disabled.bind="controller.errors.length >0">Send </button>
+    <input type="reset" class="btn btn-primary" disabled.bind="!enableReset" click.delegate="reset()">
+  </form>
+</template>
